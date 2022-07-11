@@ -2,10 +2,13 @@ let response;
 
 const dynamodbService = require('./services/dynamodbService');
 const s3Service = require('./services/s3Service');
+const { v4: uuidv4 } = require('uuid');
 
 exports.lambdaHandler = async (event, context) => {
     try {
-        await s3Service.PutObject(event.body.BlogPostContent);
+        const objectKey = uuidv4();
+
+        await s3Service.PutObject(objectKey, event.body.BlogPostContent);
         await dynamodbService.PutBlogPost(event.body, objectKey);
 
         response = {

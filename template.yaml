@@ -8,7 +8,7 @@ Parameters:
   S3BucketName:
     Description: S3 Bucket Name
     Type: String
-  BlogPostTableGetItemPolicy:
+  BlogPostTablePutItemPolicy:
     Description: BlogPost Table Policy
     Type: String
 

@@ -2,7 +2,7 @@ let response;
 
 const dynamodbService = require('./services/dynamodbService');
 const s3Service = require('./services/s3Service');
-const fileSystemService = require('./services/fileSystem');
+const fileSystemService = require('./services/fileSystemService');
 
 exports.lambdaHandler = async (event, context) => {
     try {

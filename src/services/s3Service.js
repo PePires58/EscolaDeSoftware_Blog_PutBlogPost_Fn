@@ -1,5 +1,5 @@
 const { S3Client, PutObjectCommand } = require("@aws-sdk/client-s3");
-const fileSystemService = require('./fileSystem');
+const fileSystemService = require('./fileSystemService');
 
 exports.PutObject = async function (objectKey) {
 

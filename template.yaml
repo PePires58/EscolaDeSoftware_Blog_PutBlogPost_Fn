@@ -13,6 +13,27 @@ Parameters:
     Type: String
 
 Resources:
+  BlogPostBucketPutObjectPolicy:
+    Type: AWS::IAM::ManagedPolicy
+    Properties:
+      Description: Policy for PutObject on S3 Bucket
+      ManagedPolicyName:
+        !Join ["_", [!Ref Environment, "BlogPostBucketPutObjectPolicy", "Policy"]]
+      Path: "/"
+      PolicyDocument:
+        Version: "2012-10-17"
+        Statement:
+          - Effect: Allow
+            Action: "s3:PutObject"
+            Resource: - Fn::Join:
+            [
+              "",
+              [
+                "arn:aws:s3::",
+                !Ref S3BucketName,
+              ],
+            ]
+
   PutBlogPostFunction:
     Type: AWS::Serverless::Function
     Properties:
@@ -25,7 +46,7 @@ Resources:
         - x86_64
       Timeout: 1
       Policies:
-        - AmazonS3ReadOnlyAccess
+        - !Ref BlogPostBucketPutObjectPolicy
         - Fn::Join:
             [
               "",

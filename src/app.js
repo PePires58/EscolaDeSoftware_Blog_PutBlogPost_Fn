@@ -6,7 +6,8 @@ const s3Service = require('./services/s3Service');
 exports.lambdaHandler = async (event, context) => {
     try {
 
-        await dynamodbService.PutBlogPost(event.body);
+        const objectKey = await s3Service.PutObject(event.body.BlogPostContent);
+        await dynamodbService.PutBlogPost(event.body, objectKey);
 
         response = {
             'statusCode': 201,

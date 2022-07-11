@@ -6,11 +6,11 @@ exports.PutBlogPost = async function (blogPostObject) {
     const command = new PutItemCommand({
         TableName: process.env.BlogPostTableName,
         Item: {
-            "title": blogPostObject.title,
-            "category": blogPostObject.category,
-            "image_principal_key": blogPostObject.image_principal_key,
-            "post_date": blogPostObject.post_date,
-            "resume": blogPostObject.resume
+            "title": { S: blogPostObject.title },
+            "category": { S: blogPostObject.category },
+            "image_principal_key": { S: blogPostObject.image_principal_key },
+            "post_date": { S: blogPostObject.post_date },
+            "resume": { S: blogPostObject.resume }
         }
     });
 

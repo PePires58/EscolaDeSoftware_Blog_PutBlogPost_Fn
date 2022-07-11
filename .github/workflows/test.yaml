@@ -1,4 +1,4 @@
-name: Nuget workflow - Test
+name: Deploy Lambda - Test
 on:
   push:
     branches: [test]

@@ -7,7 +7,7 @@ exports.PutObject = async function (objectKey, objectContent) {
         objectContent: objectContent
     });
 
-    if (errors) {
+    if (errors.length > 0) {
         throw new Error(errors)
     }
     else {

@@ -19,7 +19,7 @@ exports.PutObject = async function (objectKey, objectContent) {
             Body: objectContent
         });
 
-        client.send(command);
+        await client.send(command);
     }
 }
 

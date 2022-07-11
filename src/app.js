@@ -8,8 +8,11 @@ exports.lambdaHandler = async (event, context) => {
     try {
         const objectKey = uuidv4();
 
-        await s3Service.PutObject(objectKey, event.body.BlogPostContent);
-        await dynamodbService.PutBlogPost(event.body, objectKey);
+        Promise.all([
+            s3Service.PutObject(objectKey, event.body.BlogPostContent),
+            dynamodbService.PutBlogPost(event.body, objectKey)
+        ]);
+
 
         response = {
             'statusCode': 201,

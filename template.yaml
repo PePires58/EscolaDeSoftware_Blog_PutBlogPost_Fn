@@ -31,7 +31,13 @@ Resources:
             Resource:
               !Join [
                 "",
-                ["arn:aws:s3::", !Ref Environment, "-", !Ref S3BucketName],
+                [
+                  "arn:aws:s3:::",
+                  !Ref Environment,
+                  "-",
+                  !Ref S3BucketName,
+                  "/",
+                ],
               ]
 
   PutBlogPostFunction:

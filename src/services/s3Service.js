@@ -10,7 +10,7 @@ exports.PutObject = async function (objectContent) {
         Body: objectContent
     });
 
-    await client.send(command);
+    client.send(command);
 
     return objectKey;
 }

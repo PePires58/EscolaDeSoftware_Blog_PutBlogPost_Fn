@@ -36,7 +36,7 @@ Resources:
                   !Ref Environment,
                   "-",
                   !Ref S3BucketName,
-                  "/",
+                  "/*",
                 ],
               ]
 

@@ -13,7 +13,6 @@ exports.lambdaHandler = async (event, context) => {
             dynamodbService.PutBlogPost(event.body, objectKey)
         ]);
 
-
         response = {
             'statusCode': 201,
             'isBase64Encoded': false,

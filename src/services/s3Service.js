@@ -2,7 +2,7 @@ const { S3Client, PutObjectCommand } = require("@aws-sdk/client-s3");
 
 exports.PutObject = async function (objectKey, objectContent) {
 
-    const errors = invalidObjectInput({
+    const errors = getObjectInputErros({
         objectKey: objectKey,
         objectContent: objectContent
     });
@@ -23,12 +23,12 @@ exports.PutObject = async function (objectKey, objectContent) {
     }
 }
 
-function invalidObjectInput(input) {
+function getObjectInputErros(input) {
     let errors = [];
 
     if (!input.objectKey)
         errors.push('object key is required');
-    else if (!input.objectContent)
+    if (!input.objectContent)
         errors.push('object content is required');
 
     return errors;

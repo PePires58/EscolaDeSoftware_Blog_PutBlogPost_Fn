@@ -5,7 +5,9 @@ exports.PutObject = async function (blogPostContent) {
 
     const objectKey = uuidv4();
 
+    console.log('object key');
     console.log(objectKey);
+    console.log('end object key');
 
     const client = new S3Client({ region: process.env.Region });
     const command = new PutObjectCommand({

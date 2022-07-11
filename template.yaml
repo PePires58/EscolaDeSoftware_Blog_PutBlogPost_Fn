@@ -25,7 +25,7 @@ Resources:
         Statement:
           - Effect: Allow
             Action: "s3:PutObject"
-            Resource: - Fn::Join:
+            Resource: Fn::Join:
             [
               "",
               [

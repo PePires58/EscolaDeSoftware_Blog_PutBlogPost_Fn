@@ -37,6 +37,8 @@ function getObjectInputErros(input) {
         errors.push('post date is required');
     if (!input.Resume)
         errors.push('resume is required');
+    if (!input.BlogPostContent)
+        errors.push('object content is required');
 
     return errors;
 }

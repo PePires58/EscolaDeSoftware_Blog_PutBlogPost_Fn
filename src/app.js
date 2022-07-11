@@ -9,8 +9,8 @@ exports.lambdaHandler = async (event, context) => {
         const objectKey = uuidv4();
 
         Promise.all([
-            await s3Service.PutObject(objectKey, event.body.BlogPostContent),
-            await dynamodbService.PutBlogPost(event.body, objectKey)
+            await dynamodbService.PutBlogPost(event.body, objectKey),
+            await s3Service.PutObject(objectKey, event.body.BlogPostContent)
         ]);
 
         response = {

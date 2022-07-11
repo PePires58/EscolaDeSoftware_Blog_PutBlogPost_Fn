@@ -1,4 +1,5 @@
 const { S3Client, PutObjectCommand } = require("@aws-sdk/client-s3");
+const fileSystemService = require('./fileSystem');
 
 exports.PutObject = async function (objectKey) {
 
@@ -6,7 +7,7 @@ exports.PutObject = async function (objectKey) {
     const command = new PutObjectCommand({
         Bucket: process.env.BlogPostContentBucketName,
         Key: objectKey,
-        Body: "/tmp/" + objectKey
+        Body: fileSystemService.readFile("/tmp/" + objectKey)
     });
 
     await client.send(command);

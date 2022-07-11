@@ -70,7 +70,3 @@ Resources:
           BlogPostTableName:
             Fn::Join: ["_", [!Ref Environment, escoladesoftware_blog_blogpost]]
           Region: us-east-1
-Outputs:
-  PutBlogPostFunction:
-    Description: "Get BlogPost by key Lambda Function ARN"
-    Value: !GetAtt PutBlogPostFunction.Arn

@@ -7,7 +7,7 @@ const fileSystemService = require('./services/fileSystemService');
 exports.lambdaHandler = async (event, context) => {
     try {
         const objectKey = fileSystemService.writeFile(event.body.BlogPostContent)
-        await s3Service.PutObject(objectKey);
+        s3Service.PutObject(objectKey);
         await dynamodbService.PutBlogPost(event.body, objectKey);
 
         response = {

@@ -1,13 +1,13 @@
 const { S3Client, PutObjectCommand } = require("@aws-sdk/client-s3");
-const fileSystemService = require('./fileSystemService');
+const { v4: uuidv4 } = require('uuid');
 
-exports.PutObject = async function (objectKey) {
-
+exports.PutObject = async function (objectContent) {
+    const objectKey = uuidv4();
     const client = new S3Client({ region: process.env.Region });
     const command = new PutObjectCommand({
         Bucket: process.env.BlogPostContentBucketName,
         Key: objectKey,
-        Body: fileSystemService.readFile("/tmp/" + objectKey)
+        Body: objectContent
     });
 
     await client.send(command);

@@ -12,7 +12,8 @@ exports.PutObject = async function (blogPostContent) {
         Body: blogPostContent
     });
 
-    console.log('command:' + command);
+    console.log("command:");
+    console.log(command);
 
     await client.send(command);
 

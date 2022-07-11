@@ -1,0 +1,49 @@
+AWSTemplateFormatVersion: "2010-09-09"
+Transform: AWS::Serverless-2016-10-31
+Description: Escola de software - Blog - Put BlogPost - Lambda Function
+Parameters:
+  Environment:
+    Description: Environment
+    Type: String
+  S3BucketName:
+    Description: S3 Bucket Name
+    Type: String
+  BlogPostTableGetItemPolicy:
+    Description: BlogPost Table Policy
+    Type: String
+
+Resources:
+  PutBlogPostFunction:
+    Type: AWS::Serverless::Function
+    Properties:
+      FunctionName: !Join ["_", [!Ref Environment, PutBlogPostFn]]
+      Description: Put Blogpost function
+      CodeUri: src/
+      Handler: app.lambdaHandler
+      Runtime: nodejs16.x
+      Architectures:
+        - x86_64
+      Timeout: 1
+      Policies:
+        - AmazonS3ReadOnlyAccess
+        - Fn::Join:
+            [
+              "",
+              [
+                "arn:aws:iam::",
+                !Sub "${AWS::AccountId}",
+                ":policy/",
+                !Ref BlogPostTablePutItemPolicy,
+              ],
+            ]
+      Environment:
+        Variables:
+          BlogPostContentBucketName:
+            !Join ["-", [!Ref Environment, !Ref S3BucketName]]
+          BlogPostTableName:
+            Fn::Join: ["_", [!Ref Environment, escoladesoftware_blog_blogpost]]
+          Region: us-east-1
+Outputs:
+  PutBlogPostFunction:
+    Description: "Get BlogPost by key Lambda Function ARN"
+    Value: !GetAtt PutBlogPostFunction.Arn

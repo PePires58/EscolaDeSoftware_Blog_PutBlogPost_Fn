@@ -1,0 +1,7 @@
+{
+  "Parameters": {
+    "Environment": "test",
+    "S3BucketName": "escoladesoftware-blog-blogpost-content-bucket",
+    "BlogPostTableGetItemPolicy": "test_BlogPostTablePutItem_Policy"
+  }
+}

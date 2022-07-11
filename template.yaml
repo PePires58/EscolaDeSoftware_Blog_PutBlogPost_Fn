@@ -28,7 +28,11 @@ Resources:
         Statement:
           - Effect: Allow
             Action: "s3:PutObject"
-            Resource: !Join ["", ["arn:aws:s3::", !Ref S3BucketName]]
+            Resource:
+              !Join [
+                "",
+                ["arn:aws:s3::", !Ref Environment, "-", !Ref S3BucketName],
+              ]
 
   PutBlogPostFunction:
     Type: AWS::Serverless::Function

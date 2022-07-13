@@ -2,10 +2,22 @@ let response;
 
 const dynamodbService = require('./services/dynamodbService');
 const s3Service = require('./services/s3Service');
+const validatorService = require('./services/validatorService');
 const { v4: uuidv4 } = require('uuid');
 
 exports.lambdaHandler = async (event, context) => {
     try {
+        const errors = validatorService.validateInput(event.body);
+
+        if (errors) {
+            return {
+                'statusCode': 400,
+                'body': JSON.stringify(errors),
+                'isBase64Encoded': false,
+                'headers': {}
+            }
+        }
+
         const objectKey = uuidv4();
 
         Promise.all([

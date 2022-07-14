@@ -9,7 +9,7 @@ exports.lambdaHandler = async (event, context) => {
     try {
         const errors = validatorService.validateInput(event.body);
 
-        if (errors) {
+        if (errors.length > 0) {
             return {
                 'statusCode': 400,
                 'body': JSON.stringify(errors),

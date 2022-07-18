@@ -2,6 +2,7 @@
   "Parameters": {
     "Environment": "prod",
     "S3BucketName": "escoladesoftware-blog-blogpost-content-bucket",
-    "BlogPostTablePutItemPolicy": "prod_BlogPostTablePutItem_Policy"
+    "BlogPostTablePutItemPolicy": "prod_BlogPostTablePutItem_Policy",
+    "RestApiId": "{{resolve:ssm:/prod/BlogPost/APIGateway/Id}}"
   }
 }

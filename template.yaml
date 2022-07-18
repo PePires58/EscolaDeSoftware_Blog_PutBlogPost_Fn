@@ -11,7 +11,7 @@ Parameters:
   BlogPostTablePutItemPolicy:
     Description: BlogPost Table Policy
     Type: String
-  RestApiId:
+  RestApiIdParam:
     Description: REST API id
     Type: String
 
@@ -72,7 +72,7 @@ Resources:
           Properties:
             Path: /blogpost
             Method: POST
-            RestApiId: !Sub "{{resolve:ssm:${RestApiId}}}"
+            RestApiId: !Sub "{{resolve:ssm:${RestApiIdParam}}}"
       Environment:
         Variables:
           BlogPostContentBucketName:

@@ -63,6 +63,15 @@ Resources:
                 !Ref BlogPostTablePutItemPolicy,
               ],
             ]
+      Events:
+        ApiGatewayEvent:
+          Type: Api
+          Properties:
+            Path: /blogpost
+            Method: POST
+            RestApiId: 
+              Fn::Sub:
+                "{{resolve:ssm:/${Environment}/BlogPost/APIGateway/Id}}
       Environment:
         Variables:
           BlogPostContentBucketName:

@@ -8,7 +8,7 @@ const { v4: uuidv4 } = require('uuid');
 exports.lambdaHandler = async (event, context) => {
     try {
 
-        const errors = validatorService.validateInput(event.body);
+        const errors = validatorService.validateInput(JSON.parse(event.body));
 
         if (errors.length > 0) {
             return {

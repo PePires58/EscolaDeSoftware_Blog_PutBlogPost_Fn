@@ -7,10 +7,6 @@ const { v4: uuidv4 } = require('uuid');
 
 exports.lambdaHandler = async (event, context) => {
     try {
-        console.log('received event');
-        console.log(event);
-        console.log('end of event');
-
         const errors = validatorService.validateInput(event.body);
 
         if (errors.length > 0) {
@@ -18,7 +14,9 @@ exports.lambdaHandler = async (event, context) => {
                 'statusCode': 400,
                 'body': JSON.stringify(errors),
                 'isBase64Encoded': false,
-                'headers': {}
+                'headers': {
+                    'Content-Type': 'application/json'
+                }
             }
         }
 
@@ -32,7 +30,9 @@ exports.lambdaHandler = async (event, context) => {
         response = {
             'statusCode': 201,
             'isBase64Encoded': false,
-            'headers': {}
+            'headers': {
+                'Content-Type': 'application/json'
+            }
         }
 
     } catch (err) {
@@ -41,7 +41,9 @@ exports.lambdaHandler = async (event, context) => {
             'statusCode': 500,
             'body': JSON.stringify({ error: err }),
             'isBase64Encoded': false,
-            'headers': {}
+            'headers': {
+                'Content-Type': 'application/json'
+            }
         }
     }
 

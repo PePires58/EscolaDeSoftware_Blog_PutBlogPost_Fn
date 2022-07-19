@@ -12,7 +12,7 @@ exports.lambdaHandler = async (event, context) => {
         console.log(event);
         console.log('fim evento recebido');
 
-        const errors = validatorService.validateInput(event.body);
+        const errors = validatorService.validateInput(JSON.parse(event.body));
 
         if (errors.length > 0) {
             return {

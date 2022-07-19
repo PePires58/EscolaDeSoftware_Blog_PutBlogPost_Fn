@@ -7,6 +7,10 @@ const { v4: uuidv4 } = require('uuid');
 
 exports.lambdaHandler = async (event, context) => {
     try {
+        console.log('received event');
+        console.log(event);
+        console.log('end of event');
+
         const errors = validatorService.validateInput(event.body);
 
         if (errors.length > 0) {

@@ -28,10 +28,10 @@ exports.lambdaHandler = async (event, context) => {
         ]);
 
         response = {
-            'statusCode': 201,
-            'isBase64Encoded': false,
-            'headers': {
-                'Content-Type': 'application/json'
+            "statusCode": 201,
+            "isBase64Encoded": false,
+            "headers": {
+                "Content-Type": "application/json"
             }
         }
 

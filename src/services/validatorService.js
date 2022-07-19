@@ -1,6 +1,11 @@
 exports.validateInput = function (input) {
     let errors = [];
 
+    console.log('input recebido')
+    console.log(input);
+    console.log('input como json');
+    console.log(JSON.parse(input));
+
     if (!input.Title)
         errors.push('title is required');
     if (!input.Category)

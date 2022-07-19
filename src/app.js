@@ -7,6 +7,11 @@ const { v4: uuidv4 } = require('uuid');
 
 exports.lambdaHandler = async (event, context) => {
     try {
+
+        console.log('evento recebido');
+        console.log(event);
+        console.log('fim evento recebido');
+
         const errors = validatorService.validateInput(event.body);
 
         if (errors.length > 0) {
@@ -28,10 +33,10 @@ exports.lambdaHandler = async (event, context) => {
         ]);
 
         response = {
-            "statusCode": 201,
-            "isBase64Encoded": false,
-            "headers": {
-                "Content-Type": "application/json"
+            'statusCode': 201,
+            'isBase64Encoded': false,
+            'headers': {
+                'Content-Type': 'application/json'
             }
         }
 

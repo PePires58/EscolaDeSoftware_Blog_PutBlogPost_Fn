@@ -13,7 +13,8 @@ Parameters:
     Type: String
   RestApiIdParam:
     Description: REST API id
-    Type: String
+    Type: AWS::SSM::Parameter::Value<String>
+    Default: /dev/BlogPost/APIGateway/Id
 
 Resources:
   BlogPostBucketPutObjectPolicy:
@@ -72,7 +73,7 @@ Resources:
           Properties:
             Path: /blogpost
             Method: POST
-            RestApiId: !Sub "${BlogPostAPIGateway}"
+            RestApiId: !Ref RestApiIdParam
       Environment:
         Variables:
           BlogPostContentBucketName:

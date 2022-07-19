@@ -72,7 +72,7 @@ Resources:
           Properties:
             Path: /blogpost
             Method: POST
-            RestApiId: !Sub "{{resolve:ssm:${RestApiIdParam}}}"
+            RestApiId: !Sub "${BlogPostAPIGateway}"
       Environment:
         Variables:
           BlogPostContentBucketName:

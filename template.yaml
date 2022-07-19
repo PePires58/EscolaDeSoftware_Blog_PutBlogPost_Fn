@@ -11,10 +11,6 @@ Parameters:
   BlogPostTablePutItemPolicy:
     Description: BlogPost Table Policy
     Type: String
-  RestApiIdParam:
-    Description: REST API id
-    Type: AWS::SSM::Parameter::Value<String>
-    Default: /dev/BlogPost/APIGateway/Id
 
 Resources:
   BlogPostBucketPutObjectPolicy:
@@ -67,13 +63,6 @@ Resources:
                 !Ref BlogPostTablePutItemPolicy,
               ],
             ]
-      Events:
-        ApiGatewayEvent:
-          Type: Api
-          Properties:
-            Path: /blogpost
-            Method: POST
-            RestApiId: !Ref RestApiIdParam
       Environment:
         Variables:
           BlogPostContentBucketName:

@@ -2,7 +2,6 @@
   "Parameters": {
     "Environment": "test",
     "S3BucketName": "escoladesoftware-blog-blogpost-content-bucket",
-    "BlogPostTablePutItemPolicy": "test_BlogPostTablePutItem_Policy",
-    "RestApiId": "{{resolve:ssm:/test/BlogPost/APIGateway/Id}}"
+    "BlogPostTablePutItemPolicy": "test_BlogPostTablePutItem_Policy"
   }
 }

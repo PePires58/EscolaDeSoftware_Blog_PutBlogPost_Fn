@@ -3,8 +3,10 @@ exports.validateInput = function (input) {
 
     console.log('input recebido')
     console.log(input);
+    console.log(input.Title);
     console.log('input como json');
     console.log(JSON.parse(input));
+    console.log(JSON.parse(input).Title);
 
     if (!input.Title)
         errors.push('title is required');

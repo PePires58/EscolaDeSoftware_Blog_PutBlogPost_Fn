@@ -7,8 +7,8 @@ const { v4: uuidv4 } = require('uuid');
 
 exports.lambdaHandler = async (event, context) => {
     try {
-
-        const errors = validatorService.validateInput(JSON.parse(event.body));
+        const requestBody = JSON.parse(event.body);
+        const errors = validatorService.validateInput(requestBody);
 
         if (errors.length > 0) {
             return {
@@ -24,8 +24,8 @@ exports.lambdaHandler = async (event, context) => {
         const objectKey = uuidv4();
 
         Promise.all([
-            await dynamodbService.PutBlogPost(event.body, objectKey),
-            await s3Service.PutObject(objectKey, event.body.BlogPostContent)
+            await dynamodbService.PutBlogPost(requestBody, objectKey),
+            await s3Service.PutObject(objectKey, requestBody.BlogPostContent)
         ]);
 
         response = {
